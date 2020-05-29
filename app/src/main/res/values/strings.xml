@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">Navigation</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">notificationdemo</string>
+    <string name="notification">notification</string>
+    <string name="message">This is notification description...</string>
+    <string name="cancel_notification">Cancel Notification</string>
+    <string name="update_notification">Update notification</string>
+    <string name="tokencode">1001</string>
 </resources>
