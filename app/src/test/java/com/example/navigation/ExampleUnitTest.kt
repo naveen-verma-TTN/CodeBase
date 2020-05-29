@@ -1,4 +1,4 @@
-package com.example.mvvm_livedata_viewmodel
+package com.example.navigation
 
 import org.junit.Test
 
