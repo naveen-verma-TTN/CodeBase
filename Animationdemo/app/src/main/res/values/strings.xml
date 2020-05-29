@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Animation demo</string>
+    <string name="heading">Hang on</string>
+    <string name="subheading">Setting up your account...</string>
+</resources>
