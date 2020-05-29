@@ -1,6 +1,2 @@
-rootProject.name='Coroutines_demo'
+rootProject.name='MVVM_LiveData_ViewModel'
 include ':app'
-include ':coroutines_jobs'
-include ':parallel_sequential_background_task'
-include ':runblocking_coroutines'
-include ':stuctured_concurrency_error_handing'
