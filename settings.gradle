@@ -1,3 +1,2 @@
-rootProject.name='Animation demo'
 include ':app'
-include ':recyclerview_item_animation'
+rootProject.name = "Motion Layout Demo"

@@ -1,4 +1,4 @@
-package com.ttn.animationdemo
+package com.ttn.motionlayoutdemo
 
 import org.junit.Test
 

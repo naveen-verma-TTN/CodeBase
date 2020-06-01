@@ -6,37 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card"
-        style="@style/cardStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutDescription="@xml/activity_main_scene"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:motionDebug="SHOW_ALL"
+        app:motionProgress="0.5"
+        app:showPaths="true">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="start"
-            android:orientation="vertical">
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/drag_motion_layout"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/heading"
-                style="@style/HeadingStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/arvo_bold"
-                android:text="@string/heading" />
+        <View
+            android:id="@+id/button"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@color/colorAccent"
+            android:text="@string/drag_me"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/subheading"
-                style="@style/SubHeadingStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cagliostro"
-                android:text="@string/subheading" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
 
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
