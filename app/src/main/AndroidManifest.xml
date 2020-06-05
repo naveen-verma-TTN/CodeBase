@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ttn.sharedelementtransitionsample">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +18,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".simple_activity_to_activity.SimpleActivityA" />
+        <activity android:name=".simple_activity_to_activity.SimpleActivityB" />
+        <activity android:name=".simple_fragment_to_fragment.FragmentToFragmentActivity" />
+        <activity android:name=".picasso_activity_to_activity.PicassoActivityA" />
+        <activity android:name=".picasso_activity_to_activity.PicassoActivityB" />
+        <activity android:name=".picasso_fragment_to_fragment.PicassoFragmentToFragmentActivity" />
+        <activity android:name=".glide_activity_to_activity.GlideActivityA" />
+        <activity android:name=".glide_activity_to_activity.GlideActivityB" />
+        <activity android:name=".glide_fragment_to_fragment.GlideFragmentToFragmentActivity" />
+        <activity android:name=".recycler_view.recycler_view_to_activity.RecyclerViewActivity" />
+        <activity android:name=".recycler_view.recycler_view_to_activity.AnimalDetailActivity" />
+        <activity android:name=".recycler_view.recycler_view_to_fragment.RecyclerViewToFragmentActivity" />
+        <activity android:name=".recycler_view.recycler_view_to_viewpager.RecyclerViewToViewPagerActivity" />
     </application>
 
 </manifest>
