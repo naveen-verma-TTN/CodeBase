@@ -15,7 +15,7 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class ActivityBuilderModule {
 
-    // Contribute client
+    // Contribute client -- to create sub component
     @ContributesAndroidInjector(
             modules = {
                     AuthViewModelModule.class
