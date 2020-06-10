@@ -15,22 +15,40 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.ttn.dagger2.R;
+import com.ttn.dagger2.util.Constants;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Application level dependencies
  * -- Retrofit instance, glide instance, etc
  * -----that will not change for the entire lifecycle of the application
- *
  */
 @Module
 public class AppModule {
 
     //declare a dependency
+
+    // Retrofit dependency instance
+    @Singleton
+    @Provides
+    static Retrofit provideRetrofitInstance() {
+        return new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(new OkHttpClient.Builder()
+                        .addInterceptor(new HttpLoggingInterceptor()
+                                .setLevel(HttpLoggingInterceptor.Level.BODY)).build())
+                .build();
+    }
+
     @Singleton
     @Provides
     static RequestOptions provideRequestOption() {

@@ -6,6 +6,7 @@ package com.ttn.dagger2.di;
  * Email ID: naveen.verma@tothenew.com
  */
 
+import com.ttn.dagger2.di.auth.AuthModule;
 import com.ttn.dagger2.di.auth.AuthViewModelModule;
 import com.ttn.dagger2.ui.auth.AuthActivity;
 
@@ -18,7 +19,8 @@ public abstract class ActivityBuilderModule {
     // Contribute client -- to create sub component
     @ContributesAndroidInjector(
             modules = {
-                    AuthViewModelModule.class
+                    AuthViewModelModule.class,
+                    AuthModule.class,
             }
     )
     abstract AuthActivity contributeAuthActivity();
