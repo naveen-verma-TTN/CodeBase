@@ -24,6 +24,7 @@ import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -42,6 +43,7 @@ public class AppModule {
     static Retrofit provideRetrofitInstance() {
         return new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(new OkHttpClient.Builder()
                         .addInterceptor(new HttpLoggingInterceptor()
