@@ -23,15 +23,15 @@ public class SessionManager {
 
     private static final String TAG = "SessionManager";
 
-    private MediatorLiveData<AuthResource<User>> cacheUser= new MediatorLiveData<>();
+    private MediatorLiveData<AuthResource<User>> cacheUser = new MediatorLiveData<>();
 
     @Inject
     public SessionManager() {
     }
 
     public void authenticateWithId(final LiveData<AuthResource<User>> source) {
-        if(cacheUser != null) {
-            cacheUser.setValue(AuthResource.loading((User)null));
+        if (cacheUser != null) {
+            cacheUser.setValue(AuthResource.loading((User) null));
             cacheUser.addSource(source, new Observer<AuthResource<User>>() {
                 @Override
                 public void onChanged(AuthResource<User> userAuthResource) {
@@ -39,13 +39,12 @@ public class SessionManager {
                     cacheUser.removeSource(source);
                 }
             });
-        }
-        else{
+        } else {
             Log.d(TAG, "authenticateWithId: previous session detected. Retrieving user from cache.");
         }
     }
 
-    private void logOut(){
+    private void logOut() {
         Log.d(TAG, "logOut: logging out...");
         cacheUser.setValue(AuthResource.<User>logout());
     }
