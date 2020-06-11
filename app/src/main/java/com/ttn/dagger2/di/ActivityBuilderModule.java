@@ -8,6 +8,8 @@ package com.ttn.dagger2.di;
 
 import com.ttn.dagger2.di.auth.AuthModule;
 import com.ttn.dagger2.di.auth.AuthViewModelModule;
+import com.ttn.dagger2.di.main.MainFragmentBuilderModule;
+import com.ttn.dagger2.di.main.MainViewModelsModule;
 import com.ttn.dagger2.ui.auth.AuthActivity;
 import com.ttn.dagger2.ui.main.MainActivity;
 
@@ -26,6 +28,11 @@ public abstract class ActivityBuilderModule {
     )
     abstract AuthActivity contributeAuthActivity();
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(
+            modules = {
+                    MainFragmentBuilderModule.class,
+                    MainViewModelsModule.class
+            }
+    )
     abstract MainActivity contributeMainActivity();
 }

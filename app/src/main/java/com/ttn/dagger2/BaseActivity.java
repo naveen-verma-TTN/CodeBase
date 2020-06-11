@@ -8,7 +8,6 @@ package com.ttn.dagger2;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,7 +17,6 @@ import androidx.lifecycle.Observer;
 import com.ttn.dagger2.models.User;
 import com.ttn.dagger2.ui.auth.AuthActivity;
 import com.ttn.dagger2.ui.auth.AuthResource;
-import com.ttn.dagger2.ui.main.MainActivity;
 
 import javax.inject.Inject;
 
