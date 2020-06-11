@@ -76,7 +76,7 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
                             showProgressBar(false);
                             Toast.makeText(AuthActivity.this,
                                     userAuthResource.message
-                                    + "\nDid you enter the number between 1 to 10?", Toast.LENGTH_SHORT).show();
+                                            + "\nDid you enter the number between 1 to 10?", Toast.LENGTH_SHORT).show();
                             break;
                         }
                         case NOT_AUTHENTICATED: {

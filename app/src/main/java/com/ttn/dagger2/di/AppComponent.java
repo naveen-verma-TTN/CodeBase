@@ -20,27 +20,27 @@ import dagger.android.support.AndroidSupportInjectionModule;
 
 /**
  * Component class for life-time of the application
- *
- *  * -----@singleton exist for the entire lifetime of the application
- *
- *  AppComponent owns the @Singleton scope
+ * <p>
+ * * -----@singleton exist for the entire lifetime of the application
+ * <p>
+ * AppComponent owns the @Singleton scope
  */
 
 @Singleton
 @Component(
-       modules = {
-               AndroidSupportInjectionModule.class,
-               ActivityBuilderModule.class,
-               AppModule.class,
-               ViewModelFactoryModule.class,
-       }
+        modules = {
+                AndroidSupportInjectionModule.class,
+                ActivityBuilderModule.class,
+                AppModule.class,
+                ViewModelFactoryModule.class,
+        }
 )
 public interface AppComponent extends AndroidInjector<BaseApplication> {
 
     SessionManager sessionManager();
 
     @Component.Builder
-    interface Builder{
+    interface Builder {
 
         //bind the instance of the object application class
         @BindsInstance
