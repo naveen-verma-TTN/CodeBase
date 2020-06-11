@@ -44,7 +44,7 @@ public class SessionManager {
         }
     }
 
-    private void logOut() {
+    public void logOut() {
         Log.d(TAG, "logOut: logging out...");
         cacheUser.setValue(AuthResource.<User>logout());
     }
