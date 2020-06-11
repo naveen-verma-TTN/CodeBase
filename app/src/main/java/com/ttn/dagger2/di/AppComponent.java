@@ -3,6 +3,7 @@ package com.ttn.dagger2.di;
 import android.app.Application;
 
 import com.ttn.dagger2.BaseApplication;
+import com.ttn.dagger2.SessionManager;
 
 import javax.inject.Singleton;
 
@@ -35,6 +36,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
        }
 )
 public interface AppComponent extends AndroidInjector<BaseApplication> {
+
+    SessionManager sessionManager();
 
     @Component.Builder
     interface Builder{
