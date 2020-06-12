@@ -29,7 +29,7 @@ public class ProfileViewModel extends ViewModel {
         Log.d(TAG, "ProfileViewModel: ProfileViewModel is ready...");
     }
 
-    public LiveData<AuthResource<User>> getAuthenticatedUser(){
+    public LiveData<AuthResource<User>> getAuthenticatedUser() {
         return sessionManager.getAuthUser();
     }
 }

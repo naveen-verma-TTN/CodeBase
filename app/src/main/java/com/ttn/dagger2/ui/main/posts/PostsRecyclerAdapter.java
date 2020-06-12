@@ -33,7 +33,7 @@ public class PostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((PostViewHolder)holder).bind(posts.get(position));
+        ((PostViewHolder) holder).bind(posts.get(position));
     }
 
     @Override
@@ -41,12 +41,12 @@ public class PostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
         return posts.size();
     }
 
-    public void setPosts(List<Post> posts){
+    public void setPosts(List<Post> posts) {
         this.posts = posts;
         notifyDataSetChanged();
     }
 
-    public class PostViewHolder extends RecyclerView.ViewHolder{
+    public class PostViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
 
@@ -55,7 +55,7 @@ public class PostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
             title = itemView.findViewById(R.id.title);
         }
 
-        public void bind(Post post){
+        public void bind(Post post) {
             title.setText(post.getTitle());
         }
     }

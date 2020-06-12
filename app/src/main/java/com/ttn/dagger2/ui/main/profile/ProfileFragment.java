@@ -58,14 +58,14 @@ public class ProfileFragment extends DaggerFragment {
         subscribeObservers();
     }
 
-    private void subscribeObservers(){
+    private void subscribeObservers() {
         viewModel.getAuthenticatedUser().removeObservers(getViewLifecycleOwner());
         viewModel.getAuthenticatedUser().observe(getViewLifecycleOwner(), new Observer<AuthResource<User>>() {
             @Override
             public void onChanged(AuthResource<User> userAuthResource) {
-                if(userAuthResource != null) {
-                    switch (userAuthResource.status){
-                        case AUTHENTICATED:{
+                if (userAuthResource != null) {
+                    switch (userAuthResource.status) {
+                        case AUTHENTICATED: {
                             if (userAuthResource.data != null) {
                                 setUserDetails(userAuthResource.data);
                             }

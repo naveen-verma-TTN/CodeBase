@@ -46,38 +46,38 @@ public class PostsViewModel extends ViewModel {
     }
 
     public LiveData<Resource<List<Post>>> observePosts() {
-        if(posts == null) {
+        if (posts == null) {
             posts = new MediatorLiveData<>();
-            posts.setValue(Resource.loading((List<Post>)null));
+            posts.setValue(Resource.loading((List<Post>) null));
 
             final LiveData<Resource<List<Post>>> source = LiveDataReactiveStreams.fromPublisher(
 
                     mainApi.getPostsFromUser(sessionManager.getAuthUser().getValue().data.getId())
 
-                    .onErrorReturn(new Function<Throwable, List<Post>>() {
-                        @Override
-                        public List<Post> apply(Throwable throwable) throws Exception {
-                            Log.e(TAG, "apply: ", throwable);
-                            Post post = new Post();
-                            post.setId(-1);
-                            ArrayList<Post> posts = new ArrayList<>();
-                            posts.add(post);
-                            return posts;
-                        }
-                    })
-
-                    .map(new Function<List<Post>, Resource<List<Post>>>() {
-                        @Override
-                        public Resource<List<Post>> apply(List<Post> posts) throws Exception {
-                            if(posts.size() > 0){
-                                if(posts.get(0).getId() == -1) {
-                                    return Resource.error("Something went wrong", null);
+                            .onErrorReturn(new Function<Throwable, List<Post>>() {
+                                @Override
+                                public List<Post> apply(Throwable throwable) throws Exception {
+                                    Log.e(TAG, "apply: ", throwable);
+                                    Post post = new Post();
+                                    post.setId(-1);
+                                    ArrayList<Post> posts = new ArrayList<>();
+                                    posts.add(post);
+                                    return posts;
                                 }
-                            }
-                            return Resource.success(posts);
-                        }
-                    })
-                    .subscribeOn(Schedulers.io())
+                            })
+
+                            .map(new Function<List<Post>, Resource<List<Post>>>() {
+                                @Override
+                                public Resource<List<Post>> apply(List<Post> posts) throws Exception {
+                                    if (posts.size() > 0) {
+                                        if (posts.get(0).getId() == -1) {
+                                            return Resource.error("Something went wrong", null);
+                                        }
+                                    }
+                                    return Resource.success(posts);
+                                }
+                            })
+                            .subscribeOn(Schedulers.io())
             );
             posts.addSource(source, new Observer<Resource<List<Post>>>() {
                 @Override

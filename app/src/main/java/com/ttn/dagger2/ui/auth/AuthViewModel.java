@@ -37,6 +37,7 @@ public class AuthViewModel extends ViewModel {
 
     /**
      * authenticate user using id and update the authUser <MediatorLiveDate>
+     *
      * @param userId
      */
     public void authenticateWithId(int userId) {
@@ -60,8 +61,8 @@ public class AuthViewModel extends ViewModel {
                         .map(new Function<User, AuthResource<User>>() {
                             @Override
                             public AuthResource<User> apply(User user) throws Exception {
-                                if(user.getId() == -1) {
-                                    return  AuthResource.error("Could not authenticate", (User)null);
+                                if (user.getId() == -1) {
+                                    return AuthResource.error("Could not authenticate", null);
                                 }
                                 return AuthResource.authenticated(user);
                             }
@@ -70,7 +71,7 @@ public class AuthViewModel extends ViewModel {
         );
     }
 
-    public LiveData<AuthResource<User>> observeAuthState(){
+    public LiveData<AuthResource<User>> observeAuthState() {
         return sessionManager.getAuthUser();
     }
 }
