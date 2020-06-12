@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.ttn.dagger2.R;
-import com.ttn.dagger2.di.auth.AuthScope;
 import com.ttn.dagger2.util.Constants;
 
 import javax.inject.Named;

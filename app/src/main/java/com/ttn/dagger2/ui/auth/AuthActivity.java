@@ -35,7 +35,7 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
     private ProgressBar progressBar;
 
     @Inject
-            @Named("auth_dependency")
+    @Named("auth_dependency")
     String someStringFunction;
 
     @Inject
@@ -46,6 +46,7 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
 
     @Inject
     RequestManager requestManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
