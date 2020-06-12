@@ -7,9 +7,11 @@ package com.ttn.dagger2.di;
  */
 
 import com.ttn.dagger2.di.auth.AuthModule;
+import com.ttn.dagger2.di.auth.AuthScope;
 import com.ttn.dagger2.di.auth.AuthViewModelModule;
 import com.ttn.dagger2.di.main.MainFragmentBuilderModule;
 import com.ttn.dagger2.di.main.MainModule;
+import com.ttn.dagger2.di.main.MainScope;
 import com.ttn.dagger2.di.main.MainViewModelsModule;
 import com.ttn.dagger2.ui.auth.AuthActivity;
 import com.ttn.dagger2.ui.main.MainActivity;
@@ -20,15 +22,16 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class ActivityBuilderModule {
 
-    // Contribute client -- to create sub component
+    @AuthScope  // Custom-scope
     @ContributesAndroidInjector(
             modules = {
                     AuthViewModelModule.class,
                     AuthModule.class,
             }
-    )
+    )   // Contribute client -- to create sub component
     abstract AuthActivity contributeAuthActivity();
 
+    @MainScope
     @ContributesAndroidInjector(
             modules = {
                     MainFragmentBuilderModule.class,
