@@ -8,6 +8,8 @@ package com.ttn.dagger2.di.auth;
 
 import com.ttn.dagger2.network.auth.AuthApi;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
@@ -19,5 +21,13 @@ public abstract class AuthModule {
     @Provides
     static AuthApi provideAuthApi(Retrofit retrofit) {
         return retrofit.create(AuthApi.class);
+    }
+
+    // for same dependency in different scope --- use @Named("xyz")
+    @AuthScope
+    @Provides
+    @Named("auth_dependency")
+    static String someString() {
+        return "auth_dependency";
     }
 }

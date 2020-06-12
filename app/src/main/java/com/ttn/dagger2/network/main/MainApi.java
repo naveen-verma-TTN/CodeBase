@@ -9,7 +9,6 @@ package com.ttn.dagger2.network.main;
 import com.ttn.dagger2.models.Post;
 
 import java.util.List;
-import java.util.Queue;
 
 import io.reactivex.Flowable;
 import retrofit2.http.GET;

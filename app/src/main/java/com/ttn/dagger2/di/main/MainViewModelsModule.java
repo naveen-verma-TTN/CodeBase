@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModel;
 
 import com.ttn.dagger2.di.ViewModelKey;
 import com.ttn.dagger2.ui.main.posts.PostsViewModel;
-import com.ttn.dagger2.ui.main.profile.ProfileFragment;
 import com.ttn.dagger2.ui.main.profile.ProfileViewModel;
 
 import dagger.Binds;

@@ -21,6 +21,7 @@ import com.ttn.dagger2.ui.main.MainActivity;
 import com.ttn.dagger2.viewmodels.ViewModelProviderFactory;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
@@ -32,6 +33,10 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
     private EditText userId;
 
     private ProgressBar progressBar;
+
+    @Inject
+            @Named("auth_dependency")
+    String someStringFunction;
 
     @Inject
     ViewModelProviderFactory providerFactory;
@@ -46,6 +51,8 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
+
+        Log.e(TAG, "onCreate: different scope with same dependency: " + someStringFunction);
 
         userId = findViewById(R.id.user_id_input);
         progressBar = findViewById(R.id.progress_bar);

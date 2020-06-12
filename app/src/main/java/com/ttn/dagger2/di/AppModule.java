@@ -15,8 +15,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.ttn.dagger2.R;
+import com.ttn.dagger2.di.auth.AuthScope;
 import com.ttn.dagger2.util.Constants;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -36,6 +38,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AppModule {
 
     //declare a dependency
+
+    // for same dependency in different scope --- use @Named("xyz")
+    @Singleton
+    @Provides
+    @Named("app_dependency")
+    static String someString() {
+        return "app_dependency";
+    }
 
     // Retrofit dependency instance
     @Singleton
