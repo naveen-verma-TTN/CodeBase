@@ -31,7 +31,7 @@ import javax.inject.Inject;
 
 import dagger.android.support.DaggerFragment;
 
-public class PostsFragments extends DaggerFragment {
+public class PostsFragment extends DaggerFragment {
 
     private static final String TAG = "PostFragments";
 
