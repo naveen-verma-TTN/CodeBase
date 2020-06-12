@@ -9,6 +9,7 @@ package com.ttn.dagger2.di.main;
 import androidx.lifecycle.ViewModel;
 
 import com.ttn.dagger2.di.ViewModelKey;
+import com.ttn.dagger2.ui.main.posts.PostsViewModel;
 import com.ttn.dagger2.ui.main.profile.ProfileFragment;
 import com.ttn.dagger2.ui.main.profile.ProfileViewModel;
 
@@ -23,4 +24,9 @@ public abstract class MainViewModelsModule {
     @IntoMap
     @ViewModelKey(ProfileViewModel.class)
     public abstract ViewModel bindProfileViewModel(ProfileViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PostsViewModel.class)
+    public abstract ViewModel bindPostViewModel(PostsViewModel viewModel);
 }

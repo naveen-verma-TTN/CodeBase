@@ -7,6 +7,7 @@ package com.ttn.dagger2.di.main;
  */
 
 import com.ttn.dagger2.network.main.MainApi;
+import com.ttn.dagger2.ui.main.posts.PostsRecyclerAdapter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -18,5 +19,10 @@ public class MainModule {
     @Provides
     static MainApi provideMainApi(Retrofit retrofit) {
         return retrofit.create(MainApi.class);
+    }
+
+    @Provides
+    static PostsRecyclerAdapter provideAdapter() {
+        return new PostsRecyclerAdapter();
     }
 }

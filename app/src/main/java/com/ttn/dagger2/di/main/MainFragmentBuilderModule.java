@@ -6,6 +6,7 @@ package com.ttn.dagger2.di.main;
  * Email ID: naveen.verma@tothenew.com
  */
 
+import com.ttn.dagger2.ui.main.posts.PostsFragments;
 import com.ttn.dagger2.ui.main.profile.ProfileFragment;
 
 import dagger.Module;
@@ -16,4 +17,7 @@ public abstract class MainFragmentBuilderModule {
 
     @ContributesAndroidInjector
     abstract ProfileFragment contributeProfileFragment();
+
+    @ContributesAndroidInjector
+    abstract PostsFragments contributePostsFragment();
 }
