@@ -1,4 +1,4 @@
-package com.ttn.dagger2;
+package com.ttn.unittestingdemo;
 
 import org.junit.Test;
 

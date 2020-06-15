@@ -1,7 +1,3 @@
 <resources>
-    <string name="app_name">Dagger 2</string>
-    <string name="logout">Logout</string>
-    <string name="title">this is a title</string>
-    <string name="profile">Profile</string>
-    <string name="posts">Posts</string>
+    <string name="app_name">Unit Testing demo</string>
 </resources>
