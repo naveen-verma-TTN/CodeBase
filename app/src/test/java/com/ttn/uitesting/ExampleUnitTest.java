@@ -1,4 +1,4 @@
-package com.ttn.unittestingdemo;
+package com.ttn.uitesting;
 
 import org.junit.Test;
 
