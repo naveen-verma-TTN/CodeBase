@@ -1,4 +1,5 @@
-include ':gallery_ui_testing'
-include ':fragement_ui_testing'
-include ':app'
+include ':part_iv_camera_ui_testing'
+include ':part_iii_gallery_ui_testing'
+include ':part_ii_fragement_ui_testing'
+include ':part_i_simple_activity_testing'
 rootProject.name = "UI Testing"

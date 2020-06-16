@@ -11,9 +11,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/fragement_ui_testing" />
-            <option value="$PROJECT_DIR$/gallery_ui_testing" />
+            <option value="$PROJECT_DIR$/part_i_simple_activity_testing" />
+            <option value="$PROJECT_DIR$/part_ii_fragement_ui_testing" />
+            <option value="$PROJECT_DIR$/part_iii_gallery_ui_testing" />
+            <option value="$PROJECT_DIR$/part_iv_camera_ui_testing" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

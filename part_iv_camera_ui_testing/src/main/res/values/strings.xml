@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Camera_ui_testing</string>
+    <string name="select_image_from_camera">Select image from camera</string>
+</resources>
