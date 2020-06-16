@@ -1,3 +1,4 @@
+include ':gallery_ui_testing'
 include ':fragement_ui_testing'
 include ':app'
 rootProject.name = "UI Testing"

@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/fragement_ui_testing" />
+            <option value="$PROJECT_DIR$/gallery_ui_testing" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
