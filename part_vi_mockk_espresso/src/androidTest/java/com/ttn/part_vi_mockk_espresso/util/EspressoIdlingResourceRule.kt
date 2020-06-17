@@ -2,11 +2,8 @@ package com.ttn.part_vi_mockk_espresso.util
 
 import androidx.test.espresso.IdlingRegistry
 import com.ttn.part_vi_mockk_espresso.utils.EspressoIdlingResource
-import org.junit.rules.TestRule
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
-import org.junit.runners.model.Statement
-import java.lang.Exception
 
 
 /*
@@ -52,7 +49,7 @@ class EspressoIdlingResourceRule : TestRule{
  * Option2:
  * Simplified version of option#1. (TestWatcher class implements TestRule)
  */
-class EspressoIdlingResourceRule : TestWatcher(){
+class EspressoIdlingResourceRule : TestWatcher() {
 
     private val idlingResource = EspressoIdlingResource.countingIdlingResource
 
