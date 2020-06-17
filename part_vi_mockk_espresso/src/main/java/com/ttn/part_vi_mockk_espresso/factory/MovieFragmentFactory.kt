@@ -6,28 +6,37 @@ import com.bumptech.glide.request.RequestOptions
 import com.ttn.part_vi_mockk_espresso.data.source.MoviesDataSource
 import com.ttn.part_vi_mockk_espresso.movie.DirectorsFragment
 import com.ttn.part_vi_mockk_espresso.movie.MovieDetailFragment
+import com.ttn.part_vi_mockk_espresso.movie.MovieListFragment
 import com.ttn.part_vi_mockk_espresso.movie.StarActorsFragment
 
 class MovieFragmentFactory(
         private val requestOptions: RequestOptions? = null,
         private val moviesDataSource: MoviesDataSource? = null
-) : FragmentFactory() {
+) : FragmentFactory(){
 
     private val TAG: String = "AppDebug"
 
     override fun instantiate(classLoader: ClassLoader, className: String) =
 
-            when (className) {
+            when(className){
+
+                MovieListFragment::class.java.name -> {
+                    if (moviesDataSource != null) {
+                        MovieListFragment(moviesDataSource)
+                    } else {
+                        super.instantiate(classLoader, className)
+                    }
+                }
 
                 MovieDetailFragment::class.java.name -> {
-                    if (requestOptions != null
-                            && moviesDataSource != null
-                    ) {
+                    if(requestOptions != null
+                            && moviesDataSource != null){
                         MovieDetailFragment(
                                 requestOptions,
                                 moviesDataSource
                         )
-                    } else {
+                    }
+                    else{
                         super.instantiate(classLoader, className)
                     }
                 }
@@ -44,18 +53,5 @@ class MovieFragmentFactory(
                     super.instantiate(classLoader, className)
                 }
             }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
