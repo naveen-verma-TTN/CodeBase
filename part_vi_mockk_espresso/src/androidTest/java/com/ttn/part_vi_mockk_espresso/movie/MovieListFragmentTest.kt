@@ -20,7 +20,7 @@ import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING) //order of running
+@FixMethodOrder(MethodSorters.NAME_ASCENDING) // Ordering of function execution
 @RunWith(AndroidJUnit4ClassRunner::class)
 class MovieListFragmentTest {
 
