@@ -1,4 +1,4 @@
-package com.ttn.part_vi_mockk_espresso.movie
+package MovieDetailFragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,10 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.ttn.part_vi_mockk_espresso.data.Movie
-import com.ttn.part_vi_mockk_espresso.data.source.MoviesRemoteDataSource
 import com.ttn.part_vi_mockk_espresso.R
 import com.ttn.part_vi_mockk_espresso.data.source.MoviesDataSource
+import com.ttn.part_vi_mockk_espresso.ui.movie.DirectorsFragment
+import com.ttn.part_vi_mockk_espresso.ui.movie.StarActorsFragment
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
 
 class MovieDetailFragment

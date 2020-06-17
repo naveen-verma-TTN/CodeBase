@@ -9,8 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.ttn.part_vi_mockk_espresso.R
 import com.ttn.part_vi_mockk_espresso.factory.MovieFragmentFactory
-import kotlinx.android.synthetic.main.fragment_directors.view.*
-import org.junit.Assert.*
+import com.ttn.part_vi_mockk_espresso.ui.movie.DirectorsFragment
 import org.junit.Test
 import org.junit.runner.RunWith
 

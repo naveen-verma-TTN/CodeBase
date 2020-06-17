@@ -4,10 +4,10 @@ package com.ttn.part_vi_mockk_espresso.factory
 import androidx.fragment.app.FragmentFactory
 import com.bumptech.glide.request.RequestOptions
 import com.ttn.part_vi_mockk_espresso.data.source.MoviesDataSource
-import com.ttn.part_vi_mockk_espresso.movie.DirectorsFragment
-import com.ttn.part_vi_mockk_espresso.movie.MovieDetailFragment
-import com.ttn.part_vi_mockk_espresso.movie.MovieListFragment
-import com.ttn.part_vi_mockk_espresso.movie.StarActorsFragment
+import com.ttn.part_vi_mockk_espresso.ui.movie.DirectorsFragment
+import MovieDetailFragment.MovieDetailFragment
+import com.ttn.part_vi_mockk_espresso.ui.movie.MovieListFragment
+import com.ttn.part_vi_mockk_espresso.ui.movie.StarActorsFragment
 
 class MovieFragmentFactory(
         private val requestOptions: RequestOptions? = null,

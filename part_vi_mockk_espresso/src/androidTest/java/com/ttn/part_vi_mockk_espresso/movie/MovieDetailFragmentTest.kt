@@ -1,5 +1,6 @@
 package com.ttn.part_vi_mockk_espresso.movie
 
+import MovieDetailFragment.MovieDetailFragment
 import android.os.Bundle
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
@@ -14,7 +15,6 @@ import com.ttn.part_vi_mockk_espresso.data.source.MoviesRemoteDataSource
 import com.ttn.part_vi_mockk_espresso.factory.MovieFragmentFactory
 import io.mockk.every
 import io.mockk.mockk
-import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 

@@ -1,4 +1,4 @@
-package com.ttn.part_vi_mockk_espresso.movie
+package com.ttn.part_vi_mockk_espresso.ui.movie
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ttn.part_vi_mockk_espresso.R
 import com.ttn.part_vi_mockk_espresso.data.Movie
+import com.ttn.part_vi_mockk_espresso.utils.EspressoIdlingResource
 import kotlinx.android.synthetic.main.layout_movie_list_item.view.*
 
 class MoviesListAdapter(private val interaction: Interaction? = null) :
@@ -43,7 +44,7 @@ class MoviesListAdapter(private val interaction: Interaction? = null) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is MovieViewHolder -> {
-                holder.bind(differ.currentList[position])
+                holder.bind(differ.currentList.get(position))
             }
         }
     }
@@ -53,7 +54,11 @@ class MoviesListAdapter(private val interaction: Interaction? = null) :
     }
 
     fun submitList(list: List<Movie>) {
-        differ.submitList(list)
+        EspressoIdlingResource.increment()
+        val dataCommitCallback = Runnable {
+            EspressoIdlingResource.decrement()
+        }
+        differ.submitList(list, dataCommitCallback)
     }
 
     class MovieViewHolder

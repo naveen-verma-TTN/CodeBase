@@ -1,4 +1,4 @@
-package com.ttn.part_vi_mockk_espresso.movie
+package com.ttn.part_vi_mockk_espresso.ui.movie
 
 import android.os.Bundle
 import android.view.LayoutInflater
