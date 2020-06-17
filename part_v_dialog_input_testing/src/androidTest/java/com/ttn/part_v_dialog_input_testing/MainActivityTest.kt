@@ -9,10 +9,12 @@ import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import com.ttn.part_v_dialog_input_testing.MainActivity.Companion.buildToastMessage
 import org.hamcrest.Matchers.not
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.jar.Attributes
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class MainActivityTest {
@@ -43,5 +45,10 @@ class MainActivityTest {
 
         // confirm name is set to textView in activity
         onView(withId(R.id.text_name)).check(matches(withText(EXPECTED_NAME)))
+
+        // test if toast is displayed
+        onView(withText(buildToastMessage(EXPECTED_NAME)))
+                .inRoot(ToastMatcher())
+                .check(matches(isDisplayed()))
     }
 }
