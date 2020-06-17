@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/part_iii_gallery_ui_testing" />
             <option value="$PROJECT_DIR$/part_iv_camera_ui_testing" />
             <option value="$PROJECT_DIR$/part_v_dialog_input_testing" />
+            <option value="$PROJECT_DIR$/part_vi_mockk_espresso" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
