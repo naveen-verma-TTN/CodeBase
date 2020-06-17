@@ -15,6 +15,7 @@ import com.ttn.part_vi_mockk_espresso.ui.movie.DirectorsFragment
 import com.ttn.part_vi_mockk_espresso.ui.movie.MainActivity
 import com.ttn.part_vi_mockk_espresso.ui.movie.MoviesListAdapter
 import com.ttn.part_vi_mockk_espresso.ui.movie.StarActorsFragment
+import com.ttn.part_vi_mockk_espresso.util.EspressoIdlingResourceRule
 import com.ttn.part_vi_mockk_espresso.utils.EspressoIdlingResource
 import org.junit.*
 import org.junit.runner.RunWith
@@ -27,7 +28,7 @@ class MovieListFragmentTest {
     @get: Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
-    @Before
+/*    @Before
     fun registerIdlingResource() {
         IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
     }
@@ -35,7 +36,10 @@ class MovieListFragmentTest {
     @After
     fun unregisterIdlingResource() {
         IdlingRegistry.getInstance().unregister(EspressoIdlingResource.countingIdlingResource)
-    }
+    }*/
+
+    @get: Rule
+    val espressoIdlingResourceRule = EspressoIdlingResourceRule()
 
     val LIST_ITEM_IN_TEST = 4
     val MOIVE_IN_TEST = FakeMovieData.movies[LIST_ITEM_IN_TEST]
