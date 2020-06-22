@@ -11,9 +11,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/part_1" />
-            <option value="$PROJECT_DIR$/part_2" />
-            <option value="$PROJECT_DIR$/part_3" />
+            <option value="$PROJECT_DIR$/simple_koin_example" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

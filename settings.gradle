@@ -1,4 +1,2 @@
-include ':part_3'
-include ':part_2'
-include ':part_1'
-rootProject.name = "Motion Layout Demo"
+include ':simple_koin_example'
+rootProject.name = "Android Koin demo"
