@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         student1.beSmart()
 
         val vm = getViewModel<MainViewModel>() // option 1
+        vm.performAction()
 
         doSomething()
     }
