@@ -1,16 +1,21 @@
 package com.ttn.rxjava;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.ttn.rxjava.model.Task;
 import com.ttn.rxjava.utils.DummyDataSource;
 
+import org.reactivestreams.Subscription;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.BackpressureStrategy;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.FlowableSubscriber;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -31,41 +36,47 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // setting up the observable and subscribe it
-        setObservable().subscribe(new Observer<Task>() {
-            /**
-             * call on subscribing the observable
-             */
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                Log.d(TAG, "onSubscribe: called");
-            }
+        setObservable().subscribe(new MyObservable());
 
-            /**
-             * call on the next iterable item on the observable list (Task list)
-             */
-            @Override
-            public void onNext(@NonNull Task task) {
-                Log.d(TAG, "onNext: " + Thread.currentThread().getName());
-                Log.d(TAG, "onNext: " + task.getDescription());
-            }
+        setFlowable().subscribe(new MyFlowable());
 
-            /**
-             * call on error occurs
-             */
-            @Override
-            public void onError(@NonNull Throwable e) {
-                Log.e(TAG, "onError: called", e);
-            }
+        convertObservableToFlowable();
 
-            /**
-             * call after all the Task are completed
-             */
-            @Override
-            public void onComplete() {
-                Log.d(TAG, "onComplete: completed..");
-            }
-        });
+        convertFlowableToObserver();
+    }
+
+    private void convertFlowableToObserver() {
+        Observable<Integer> observable = Observable
+                .just(1, 2, 3, 4, 5);
+
+//        MISSING, ERROR, BUFFER, DROP, LATEST
+        Flowable<Integer> flowable = observable.toFlowable(BackpressureStrategy.BUFFER);
+
+        Observable<Integer> backToObserver = flowable.toObservable();
+
+        backToObserver.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new MyIntegerObserver());
+    }
+
+    private void convertObservableToFlowable() {
+        Observable<Integer> observable = Observable
+                .just(1, 2, 3, 4, 5);
+
+//        MISSING, ERROR, BUFFER, DROP, LATEST
+        Flowable<Integer> flowable = observable.toFlowable(BackpressureStrategy.BUFFER);
+        flowable.onBackpressureBuffer()
+                .observeOn(Schedulers.computation())
+                .subscribe(new MyFlowable());
+    }
+
+    /**
+     * Even with 10 million integers, this will not cause an Out of Memory Exception
+     */
+    private Flowable<Integer> setFlowable() {
+        return Flowable.range(0, 100000)
+                .onBackpressureBuffer()
+                .observeOn(Schedulers.computation());
     }
 
     /**
@@ -88,6 +99,89 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * flowable class
+     */
+    static class MyFlowable implements FlowableSubscriber<Integer> {
+
+        @Override
+        public void onSubscribe(@NonNull Subscription s) {
+            Log.d(TAG, "onSubscribe: called");
+        }
+
+        @Override
+        public void onNext(Integer integer) {
+            Log.d(TAG, "onNext: " + integer);
+        }
+
+        @Override
+        public void onError(Throwable t) {
+            Log.e(TAG, "onError: ", t);
+        }
+
+        @Override
+        public void onComplete() {
+            Log.d(TAG, "onComplete: completed..");
+        }
+    }
+
+    /**
+     * Observer class
+     */
+    static class MyObservable implements Observer<Task> {
+        //          call on subscribing the observable
+        @Override
+        public void onSubscribe(@NonNull Disposable d) {
+            Log.d(TAG, "onSubscribe: called");
+        }
+
+        //           call on the next iterable item on the observable list (Task list)
+        @Override
+        public void onNext(@NonNull Task task) {
+            Log.d(TAG, "onNext: " + Thread.currentThread().getName());
+            Log.d(TAG, "onNext: " + task.getDescription());
+        }
+
+        //           call on error occurs
+        @Override
+        public void onError(@NonNull Throwable e) {
+            Log.e(TAG, "onError: called", e);
+        }
+
+        //           call after all the Task are completed
+        @Override
+        public void onComplete() {
+            Log.d(TAG, "onComplete: completed..");
+        }
+    }
+
+    /**
+     * Integer Observer class
+     */
+    static class MyIntegerObserver implements Observer<Integer> {
+
+        @Override
+        public void onSubscribe(@NonNull Disposable d) {
+            Log.d(TAG, "onSubscribe: called");
+        }
+
+        @Override
+        public void onNext(@NonNull Integer integer) {
+            Log.d(TAG, "onNext: " + Thread.currentThread().getName());
+            Log.d(TAG, "onNext: " + integer);
+        }
+
+        @Override
+        public void onError(@NonNull Throwable e) {
+            Log.e(TAG, "onError: called", e);
+        }
+
+        @Override
+        public void onComplete() {
+            Log.d(TAG, "onComplete: completed..");
+        }
     }
 
 }
