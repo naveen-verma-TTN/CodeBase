@@ -1,3 +1,2 @@
-include ':advance_koin'
-include ':simple_koin_example'
-rootProject.name = "Android Koin demo"
+include ':app'
+rootProject.name = "RxJava"
