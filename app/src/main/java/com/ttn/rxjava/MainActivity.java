@@ -18,11 +18,15 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.FlowableSubscriber;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Predicate;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
+
+    // A disposable remove the observer from an observable
+    private static CompositeDisposable disposable = new CompositeDisposable();
 
     private static final String TAG = "MainActivity";
 
@@ -31,18 +35,19 @@ public class MainActivity extends AppCompatActivity {
 
     //vars
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setObservable().subscribe(new MyObservable());
+//        setObservable().subscribe(new MyObservable());
 
         setFlowable().subscribe(new MyFlowable());
 
-        convertObservableToFlowable();
+//        convertObservableToFlowable();
 
-        convertFlowableToObserver();
+//        convertFlowableToObserver();
     }
 
     private void convertFlowableToObserver() {
@@ -109,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onSubscribe(@NonNull Subscription s) {
             Log.d(TAG, "onSubscribe: called");
+
         }
 
         @Override
@@ -135,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onSubscribe(@NonNull Disposable d) {
             Log.d(TAG, "onSubscribe: called");
+            disposable.add(d);
         }
 
         //           call on the next iterable item on the observable list (Task list)
@@ -184,4 +191,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // It will clear all the subscriber of observers without disabling it -- soft clear
+        disposable.clear();
+        // It will no longer allow anything to subscribe to observable -- hard clear
+        disposable.dispose();
+    }
 }
