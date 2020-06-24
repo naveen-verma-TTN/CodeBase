@@ -23,12 +23,12 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Predicate;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class MainActivity extends AppCompatActivity {
+public class ObservablesAndFlowables extends AppCompatActivity {
 
     // A disposable remove the observer from an observable
     private static CompositeDisposable disposable = new CompositeDisposable();
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "ObservablesAndFlowables";
 
     //ui
     private TextView text;
@@ -41,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        setObservable().subscribe(new MyObservable());
+        setObservable().subscribe(new MyObservable());
 
         setFlowable().subscribe(new MyFlowable());
 
-//        convertObservableToFlowable();
+        convertObservableToFlowable();
 
-//        convertFlowableToObserver();
+        convertFlowableToObserver();
     }
 
     private void convertFlowableToObserver() {
@@ -91,17 +91,14 @@ public class MainActivity extends AppCompatActivity {
         return Observable
                 .fromIterable(DummyDataSource.createTasksList())
                 .subscribeOn(Schedulers.io())
-                .filter(new Predicate<Task>() {
-                    @Override
-                    public boolean test(Task task) throws Throwable {
-                        Log.d(TAG, "test: " + Thread.currentThread().getName());
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        return task.isComplete();
+                .filter(task -> {
+                    Log.d(TAG, "test: " + Thread.currentThread().getName());
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
+                    return task.isComplete();
                 })
                 .observeOn(AndroidSchedulers.mainThread());
     }
