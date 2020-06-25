@@ -17,7 +17,7 @@ import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.functions.Predicate;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class FilterOperator extends AppCompatActivity {
@@ -31,6 +31,27 @@ public class FilterOperator extends AppCompatActivity {
         filterOperator().subscribe(new MyObserver<Task>());
 
         distinctOperator().subscribe(new MyObserver<Task>());
+
+        takeOperator().subscribe(new MyObserver<Task>());
+
+        takeWhileOperator().subscribe(new MyObserver<Task>());
+    }
+
+    private @NonNull Observable<Task> takeWhileOperator() {
+        return Observable
+                .fromIterable(DummyDataSource.createTasksList())
+                .takeWhile(Task::isComplete)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+
+    private @NonNull Observable<Task> takeOperator() {
+        return Observable
+                .fromIterable(DummyDataSource.createTasksList())
+                .take(3)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     private @NonNull Observable<Task> distinctOperator() {
