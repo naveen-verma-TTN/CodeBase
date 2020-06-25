@@ -1,24 +1,23 @@
-package com.ttn.rxjava;
+package com.ttn.rxjava.view;
 
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ttn.rxjava.R;
 import com.ttn.rxjava.model.Task;
 import com.ttn.rxjava.utils.DummyDataSource;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.ObservableEmitter;
 import io.reactivex.rxjava3.core.ObservableOnSubscribe;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Function;
-import io.reactivex.rxjava3.functions.Predicate;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CreateObservables extends AppCompatActivity {
@@ -43,6 +42,58 @@ public class CreateObservables extends AppCompatActivity {
 
         createObservablesUsingRepeatMethod().subscribe(new MyObserver<Integer>());
 
+        createObservablesUsing_fromArray().subscribe(new MyObserver<Task>());
+
+        createObservablesUsing_fromIterable().subscribe(new MyObserver<Task>());
+
+        // --------->method will be executed since now something has subscribed
+        createObservablesUsing_fromCallable().subscribe(new MyObserver<Task>());
+
+    }
+
+    /**
+     * Used for Room datable or SQL lite database
+     */
+    private Observable<Task> createObservablesUsing_fromCallable() {
+        // --------->create Observable (method will not execute yet)
+        return Observable
+                .fromCallable(new Callable<Task>() {
+                    @Override
+                    public Task call() throws Exception {
+                        // return database task
+//                        return MyDatabase.getTask();
+                        return task;
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * create observer using fromIterable()
+     */
+    private @NonNull Observable<Task> createObservablesUsing_fromIterable() {
+        return Observable
+                .fromIterable(DummyDataSource.createTasksList())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * create observer using fromArray()
+     */
+    private Observable<Task> createObservablesUsing_fromArray() {
+        Task[] list = new Task[5];
+        list[0] = (new Task("Take out the trash", true, 3));
+        list[1] = (new Task("Walk the dog", false, 2));
+        list[2] = (new Task("Make my bed", true, 1));
+        list[3] = (new Task("Unload the dishwasher", false, 0));
+        list[4] = (new Task("Make dinner", true, 5));
+
+        return Observable
+                .fromArray(list)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     /**

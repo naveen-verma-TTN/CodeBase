@@ -1,10 +1,11 @@
-package com.ttn.rxjava;
+package com.ttn.rxjava.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
 
+import com.ttn.rxjava.R;
 import com.ttn.rxjava.model.Task;
 
 import java.util.concurrent.TimeUnit;

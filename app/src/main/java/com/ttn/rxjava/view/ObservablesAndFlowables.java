@@ -1,4 +1,4 @@
-package com.ttn.rxjava;
+package com.ttn.rxjava.view;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ttn.rxjava.R;
 import com.ttn.rxjava.model.Task;
 import com.ttn.rxjava.utils.DummyDataSource;
 
@@ -20,8 +21,11 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.disposables.DisposableContainer;
 import io.reactivex.rxjava3.functions.Predicate;
+import io.reactivex.rxjava3.internal.operators.flowable.FlowableSubscribeOn;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subscribers.DisposableSubscriber;
 
 public class ObservablesAndFlowables extends AppCompatActivity {
 
@@ -41,13 +45,13 @@ public class ObservablesAndFlowables extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setObservable().subscribe(new MyObservable());
+//        setObservable().subscribe(new MyObservable());
 
         setFlowable().subscribe(new MyFlowable());
 
-        convertObservableToFlowable();
+//        convertObservableToFlowable();
 
-        convertFlowableToObserver();
+//        convertFlowableToObserver();
     }
 
     private void convertFlowableToObserver() {
@@ -110,8 +114,7 @@ public class ObservablesAndFlowables extends AppCompatActivity {
 
         @Override
         public void onSubscribe(@NonNull Subscription s) {
-            Log.d(TAG, "onSubscribe: called");
-
+            s.request(Long.MAX_VALUE);
         }
 
         @Override
@@ -128,6 +131,8 @@ public class ObservablesAndFlowables extends AppCompatActivity {
         public void onComplete() {
             Log.d(TAG, "onComplete: completed..");
         }
+
+
     }
 
     /**
