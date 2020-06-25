@@ -18,7 +18,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 
-public class FutureOperator extends AppCompatActivity {
+public class FutureAndPublisherOperator extends AppCompatActivity {
     private static final String TAG = "FutureOperator";
 
     MainViewModel viewModel;
@@ -30,9 +30,29 @@ public class FutureOperator extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
-        /*
-         * calling future result from viewModel
-         */
+        fromFuture();
+
+        fromPublisher();
+    }
+
+    /*
+     * Getting LiveData result from viewModel
+     */
+    private void fromPublisher() {
+        viewModel.makeQuery().observe(this, responseBody -> {
+            Log.d(TAG, "onChanged: this is a live data response!");
+            try {
+                Log.d(TAG, "onChanged: " + responseBody.string());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    /*
+     * calling future result from viewModel
+     */
+    private void fromFuture() {
         try {
             viewModel.makeFutureQuery().get()
                     .subscribeOn(Schedulers.io())

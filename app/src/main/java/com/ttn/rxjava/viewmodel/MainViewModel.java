@@ -6,6 +6,7 @@ package com.ttn.rxjava.viewmodel;
  * Email ID: naveen.verma@tothenew.com
  */
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.ttn.rxjava.model.repository.Repository;
@@ -25,5 +26,12 @@ public class MainViewModel extends ViewModel {
 
     public Future<Observable<ResponseBody>> makeFutureQuery(){
         return repository.makeFutureQuery();
+    }
+
+    /**
+     * getting the LiveData result
+     */
+    public LiveData<ResponseBody> makeQuery(){
+        return repository.makeReactiveQuery();
     }
 }
