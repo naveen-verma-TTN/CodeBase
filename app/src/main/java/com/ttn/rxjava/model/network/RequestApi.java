@@ -6,10 +6,16 @@ package com.ttn.rxjava.model.network;
  * Email ID: naveen.verma@tothenew.com
  */
 
+import com.ttn.rxjava.model.Comment;
+import com.ttn.rxjava.model.Post;
+
+import java.util.List;
+
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface RequestApi {
 
@@ -18,4 +24,12 @@ public interface RequestApi {
 
     @GET("todos/1")
     Flowable<ResponseBody> makeQuery();
+
+    @GET("posts")
+    Observable<List<Post>> getPosts();
+
+    @GET("posts/{id}/comments")
+    Observable<List<Comment>> getComments(
+            @Path("id") int id
+    );
 }

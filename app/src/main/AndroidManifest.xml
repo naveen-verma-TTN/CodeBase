@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.operators.transformation.FlatMapOperator">
+        <activity android:name=".view.operators.transformation.flatMapOperator.ConcatMapOperator"></activity>
+        <activity android:name=".view.operators.transformation.flatMapOperator.FlatMapOperator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +36,7 @@
         <activity android:name=".view.operators.create_observables.RepeatOperator" />
         <activity android:name=".view.operators.create_observables.RangeOperator" />
         <activity android:name=".view.operators.create_observables.JustOperator" />
-        <activity android:name=".view.operators.transformation.ThrottleFirstOperator"/>
+        <activity android:name=".view.operators.transformation.ThrottleFirstOperator" />
         <activity android:name=".view.operators.transformation.MapOperator" />
         <activity android:name=".view.operators.filter_and_sorting.FilterOperators" />
         <activity android:name=".view.operators.create_observables.FromFutureOperator" />
