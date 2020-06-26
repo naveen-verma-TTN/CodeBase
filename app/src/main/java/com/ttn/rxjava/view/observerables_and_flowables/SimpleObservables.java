@@ -1,4 +1,4 @@
-package com.ttn.rxjava.view;
+package com.ttn.rxjava.view.observerables_and_flowables;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -28,17 +28,13 @@ import io.reactivex.rxjava3.internal.operators.flowable.FlowableSubscribeOn;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subscribers.DisposableSubscriber;
 
-public class ObservablesAndFlowables extends AppCompatActivity {
+public class SimpleObservables extends AppCompatActivity {
 
     // A disposable remove the observer from an observable
     private static CompositeDisposable disposable = new CompositeDisposable();
 
     private static final String TAG = "ObservablesAndFlowables";
 
-    //ui
-    private TextView text;
-
-    //vars
 
 
     @Override
@@ -47,46 +43,6 @@ public class ObservablesAndFlowables extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setObservable().subscribe(new MyObservable());
-
-        setFlowable().subscribe(new MyFlowable());
-
-        convertObservableToFlowable();
-
-        convertFlowableToObserver();
-    }
-
-    private void convertFlowableToObserver() {
-        Observable<Integer> observable = Observable
-                .just(1, 2, 3, 4, 5);
-
-//        MISSING, ERROR, BUFFER, DROP, LATEST
-        Flowable<Integer> flowable = observable.toFlowable(BackpressureStrategy.BUFFER);
-
-        Observable<Integer> backToObserver = flowable.toObservable();
-
-        backToObserver.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<Integer>());
-    }
-
-    private void convertObservableToFlowable() {
-        Observable<Integer> observable = Observable
-                .just(1, 2, 3, 4, 5);
-
-//        MISSING, ERROR, BUFFER, DROP, LATEST
-        Flowable<Integer> flowable = observable.toFlowable(BackpressureStrategy.BUFFER);
-        flowable.onBackpressureBuffer()
-                .observeOn(Schedulers.computation())
-                .subscribe(new MyFlowable());
-    }
-
-    /**
-     * Even with 10 million integers, this will not cause an Out of Memory Exception
-     */
-    private Flowable<Integer> setFlowable() {
-        return Flowable.range(0, 100000)
-                .onBackpressureBuffer()
-                .observeOn(Schedulers.computation());
     }
 
     /**
@@ -108,33 +64,7 @@ public class ObservablesAndFlowables extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    /**
-     * flowable class
-     */
-    static class MyFlowable implements FlowableSubscriber<Integer> {
 
-        @Override
-        public void onSubscribe(@NonNull Subscription s) {
-            s.request(Long.MAX_VALUE);
-        }
-
-        @Override
-        public void onNext(Integer integer) {
-            Log.d(TAG, "onNext: " + integer);
-        }
-
-        @Override
-        public void onError(Throwable t) {
-            Log.e(TAG, "onError: ", t);
-        }
-
-        @Override
-        public void onComplete() {
-            Log.d(TAG, "onComplete: completed..");
-        }
-
-
-    }
 
     /**
      * Observer class

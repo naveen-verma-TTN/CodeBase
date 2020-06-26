@@ -11,20 +11,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.TransformationOperators2">
+        <activity android:name=".view.operators.transformation.FlatMapOperator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.TransformationOperators">
-        </activity>
-        <activity android:name=".view.FilterOperators"></activity>
-        <activity android:name=".view.FutureAndPublisherOperators" />
-        <activity android:name=".view.IntervalAndTimer" />
-        <activity android:name=".view.CreateObservables" />
-        <activity android:name=".view.ObservablesAndFlowables" />
+        <activity android:name=".view.observerables_and_flowables.ConvertFlowableToObserver" />
+        <activity android:name=".view.observerables_and_flowables.ConvertObservableToFlowable" />
+        <activity android:name=".view.observerables_and_flowables.SimpleFlowables" />
+        <activity android:name=".view.operators.transformation.DebounceOperator" />
+        <activity android:name=".view.operators.transformation.RxClickReactiveStream" />
+        <activity android:name=".view.operators.transformation.BufferOperator" />
+        <activity android:name=".view.operators.create_observables.IntervalOperator" />
+        <activity android:name=".view.operators.create_observables.FromPublisherOperator" />
+        <activity android:name=".view.operators.filter_and_sorting.TakeWhileOperator" />
+        <activity android:name=".view.operators.filter_and_sorting.TakeOperator" />
+        <activity android:name=".view.operators.filter_and_sorting.DistinctOperator" />
+        <activity android:name=".view.operators.create_observables.FromCallableOperator" />
+        <activity android:name=".view.operators.create_observables.FromIterableOperator" />
+        <activity android:name=".view.operators.create_observables.FromArrayOperator" />
+        <activity android:name=".view.operators.create_observables.RepeatOperator" />
+        <activity android:name=".view.operators.create_observables.RangeOperator" />
+        <activity android:name=".view.operators.create_observables.JustOperator" />
+        <activity android:name=".view.operators.transformation.ThrottleFirstOperator"/>
+        <activity android:name=".view.operators.transformation.MapOperator" />
+        <activity android:name=".view.operators.filter_and_sorting.FilterOperators" />
+        <activity android:name=".view.operators.create_observables.FromFutureOperator" />
+        <activity android:name=".view.operators.create_observables.TimerOperator" />
+        <activity android:name=".view.operators.create_observables.CreateOperator" />
+        <activity android:name=".view.observerables_and_flowables.SimpleObservables" />
     </application>
 
 </manifest>

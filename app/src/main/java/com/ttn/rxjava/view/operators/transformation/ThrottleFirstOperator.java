@@ -1,4 +1,4 @@
-package com.ttn.rxjava.view;
+package com.ttn.rxjava.view.operators.transformation;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +19,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import kotlin.Unit;
 
-public class TransformationOperators2 extends AppCompatActivity {
+public class ThrottleFirstOperator extends AppCompatActivity {
 
     private static final String TAG = "TransformationOperators";
 
@@ -39,13 +39,13 @@ public class TransformationOperators2 extends AppCompatActivity {
 
         timeSinceLastRequest = System.currentTimeMillis();
 
-        observablesUses_throttleFirstOperator().subscribe(new ThrottleFirstObserver());
+       throttleFirstOperator().subscribe(new ThrottleFirstObserver());
     }
 
     /**
      * Avoid multiple request by restricting emission of Observer
      */
-    private Observable<Unit> observablesUses_throttleFirstOperator() {
+    private Observable<Unit> throttleFirstOperator() {
         // Set a click listener to the button with RxBinding Library
         return RxView.clicks(button)
                 .throttleFirst(4000, TimeUnit.MILLISECONDS) // Throttle the clicks so 500 ms must pass before registering a new click
@@ -73,7 +73,7 @@ public class TransformationOperators2 extends AppCompatActivity {
         public void onNext(Unit unit) {
             String text = "onNext: time since last clicked: " + (System.currentTimeMillis() - timeSinceLastRequest);
             Log.d(TAG, text);
-            Toast.makeText(TransformationOperators2.this, text, Toast.LENGTH_SHORT).show();
+            Toast.makeText(ThrottleFirstOperator.this, text, Toast.LENGTH_SHORT).show();
             someMethod(); // Execute some method when a click is registered
         }
 
