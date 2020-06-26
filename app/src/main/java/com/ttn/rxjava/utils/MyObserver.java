@@ -6,9 +6,15 @@ package com.ttn.rxjava.utils;
  * Email ID: naveen.verma@tothenew.com
  */
 
+import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
+
 import com.ttn.rxjava.model.Task;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observer;
@@ -24,13 +30,20 @@ public class MyObserver<T> implements Observer<T> {
     }
 
     // call on the next iterable item on the observable list (Task list)
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void onNext(@NonNull T t) {
-        if (!t.getClass().getSimpleName().equals("Task")) {
-            Log.d(TAG, "onNext: " + t.getClass().getSimpleName() + ": " + t);
+    public void onNext(@NonNull T type) {
+        if (type.getClass().getSimpleName().equals("Task")) {
+            Task task = (Task) type;
+            Log.d(TAG, "onNext: " + type.getClass().getSimpleName() + ": " + task.getDescription());
+
+        } else if (type.getClass().getSimpleName().equals("ArrayList")) {
+            Log.d(TAG, "onNext: bundle result: ----------------------");
+            for (Task task : (List<Task>) type) {
+                Log.d(TAG, "onNext: " + type.getClass().getSimpleName() + ": " + task.getDescription());
+            }
         } else {
-            Task task = (Task) t;
-            Log.d(TAG, "onNext: " + t.getClass().getSimpleName() + ": " + task.getDescription());
+            Log.d(TAG, "onNext: " + type.getClass().getSimpleName() + ": " + type);
         }
     }
 
