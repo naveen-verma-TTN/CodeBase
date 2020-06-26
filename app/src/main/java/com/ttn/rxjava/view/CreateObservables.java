@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.ttn.rxjava.R;
 import com.ttn.rxjava.model.Task;
 import com.ttn.rxjava.utils.DummyDataSource;
+import com.ttn.rxjava.utils.MyObserver;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -158,33 +159,5 @@ public class CreateObservables extends AppCompatActivity {
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-    }
-
-    private static class MyObserver<T> implements Observer<T> {
-
-        @Override
-        public void onSubscribe(@NonNull Disposable d) {
-
-        }
-
-        @Override
-        public void onNext(@NonNull T t) {
-            if (!t.getClass().getSimpleName().equals("Task")) {
-                Log.d(TAG, "onNext: " + t.getClass().getSimpleName() + ": " + t);
-            } else {
-                Task task = (Task) t;
-                Log.d(TAG, "onNext: " + t.getClass().getSimpleName() + ": " + task.getDescription());
-            }
-        }
-
-        @Override
-        public void onError(@NonNull Throwable e) {
-
-        }
-
-        @Override
-        public void onComplete() {
-
-        }
     }
 }

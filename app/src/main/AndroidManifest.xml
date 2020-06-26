@@ -11,17 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.FilterOperator">
+        <activity android:name=".view.TransformationOperators">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.FutureAndPublisherOperator">
+        <activity android:name=".view.FilterOperators">
         </activity>
+        <activity android:name=".view.FutureAndPublisherOperators"></activity>
         <activity android:name=".view.IntervalAndTimer" />
-        <activity android:name=".view.CreateObservables"></activity>
+        <activity android:name=".view.CreateObservables" />
         <activity android:name=".view.ObservablesAndFlowables" />
     </application>
 

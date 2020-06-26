@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.ttn.rxjava.R;
 import com.ttn.rxjava.model.Task;
 import com.ttn.rxjava.utils.DummyDataSource;
+import com.ttn.rxjava.utils.MyObserver;
 
 import org.reactivestreams.Subscription;
 
@@ -45,13 +46,13 @@ public class ObservablesAndFlowables extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        setObservable().subscribe(new MyObservable());
+        setObservable().subscribe(new MyObservable());
 
         setFlowable().subscribe(new MyFlowable());
 
-//        convertObservableToFlowable();
+        convertObservableToFlowable();
 
-//        convertFlowableToObserver();
+        convertFlowableToObserver();
     }
 
     private void convertFlowableToObserver() {
@@ -65,7 +66,7 @@ public class ObservablesAndFlowables extends AppCompatActivity {
 
         backToObserver.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyIntegerObserver());
+                .subscribe(new MyObserver<Integer>());
     }
 
     private void convertObservableToFlowable() {
@@ -160,33 +161,6 @@ public class ObservablesAndFlowables extends AppCompatActivity {
         }
 
         //           call after all the Task are completed
-        @Override
-        public void onComplete() {
-            Log.d(TAG, "onComplete: completed..");
-        }
-    }
-
-    /**
-     * Integer Observer class
-     */
-    static class MyIntegerObserver implements Observer<Integer> {
-
-        @Override
-        public void onSubscribe(@NonNull Disposable d) {
-            Log.d(TAG, "onSubscribe: called");
-        }
-
-        @Override
-        public void onNext(@NonNull Integer integer) {
-            Log.d(TAG, "onNext: " + Thread.currentThread().getName());
-            Log.d(TAG, "onNext: " + integer);
-        }
-
-        @Override
-        public void onError(@NonNull Throwable e) {
-            Log.e(TAG, "onError: called", e);
-        }
-
         @Override
         public void onComplete() {
             Log.d(TAG, "onComplete: completed..");
