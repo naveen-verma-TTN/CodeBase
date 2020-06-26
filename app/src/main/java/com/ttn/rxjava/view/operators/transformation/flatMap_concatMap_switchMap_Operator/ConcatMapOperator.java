@@ -1,4 +1,4 @@
-package com.ttn.rxjava.view.operators.transformation.flatMapOperator;
+package com.ttn.rxjava.view.operators.transformation.flatMap_concatMap_switchMap_Operator;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -139,7 +139,7 @@ public class ConcatMapOperator extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-        adapter = new RecyclerAdapter();
+        adapter = new RecyclerAdapter(null);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
@@ -149,5 +149,5 @@ public class ConcatMapOperator extends AppCompatActivity {
         super.onDestroy();
         disposables.clear();
     }
-}
+
 }

@@ -11,14 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.operators.transformation.flatMapOperator.ConcatMapOperator"></activity>
-        <activity android:name=".view.operators.transformation.flatMapOperator.FlatMapOperator">
+        <activity android:name=".view.operators.transformation.flatMap_concatMap_switchMap_Operator.SwitchMapOperator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.operators.transformation.flatMap_concatMap_switchMap_Operator.ConcatMapOperator">
+        </activity>
+        <activity android:name=".view.operators.transformation.flatMap_concatMap_switchMap_Operator.FlatMapOperator"></activity>
         <activity android:name=".view.observerables_and_flowables.ConvertFlowableToObserver" />
         <activity android:name=".view.observerables_and_flowables.ConvertObservableToFlowable" />
         <activity android:name=".view.observerables_and_flowables.SimpleFlowables" />
