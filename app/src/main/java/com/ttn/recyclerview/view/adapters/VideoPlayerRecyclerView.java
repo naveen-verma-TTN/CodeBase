@@ -1,4 +1,4 @@
-package com.ttn.recyclerview.view.adapter;
+package com.ttn.recyclerview.view.adapters;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -7,7 +7,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -33,7 +32,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.ttn.recyclerview.R;
 import com.ttn.recyclerview.model.MediaObject;
-import com.ttn.recyclerview.view.adapter.VideoPlayerRecyclerAdapter.VideoPlayerViewHolder;
+import com.ttn.recyclerview.view.adapters.VideoPlayerRecyclerAdapter.VideoPlayerViewHolder;
 import java.util.*;
 
 /*
@@ -111,6 +110,7 @@ public class VideoPlayerRecyclerView extends RecyclerView {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     Log.d(TAG, "onScrollStateChanged: called.");
                     if(thumbnail != null){ // show the old thumbnail
+                        volumeControl.setAlpha(0F);
                         thumbnail.setVisibility(VISIBLE);
                     }
 
@@ -427,10 +427,6 @@ public class VideoPlayerRecyclerView extends RecyclerView {
             volumeControl.animate().cancel();
 
             volumeControl.setAlpha(1f);
-
-            volumeControl.animate()
-                    .alpha(0f)
-                    .setDuration(600).setStartDelay(1000);
         }
     }
 

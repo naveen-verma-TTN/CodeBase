@@ -1,18 +1,17 @@
-package com.ttn.recyclerview.view.adapter
+package com.ttn.recyclerview.view.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.RequestManager
 import com.ttn.recyclerview.R
 import com.ttn.recyclerview.model.MediaObject
-import java.util.*
 
 /*
  * Created by Naveen Verma on 29/6/20.
@@ -21,9 +20,11 @@ import java.util.*
  */
 
 class VideoPlayerRecyclerAdapter(
-    private val mediaObjects: ArrayList<MediaObject>,
     private val requestManager: RequestManager
 ) : RecyclerView.Adapter<ViewHolder>() {
+
+    private var mediaObjects: ArrayList<MediaObject> = ArrayList()
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         return VideoPlayerViewHolder(
             LayoutInflater.from(viewGroup.context)
@@ -39,9 +40,43 @@ class VideoPlayerRecyclerAdapter(
         return mediaObjects.size
     }
 
+    // applying DiffUtils to newly created content
+    fun setList(mediaObjects: ArrayList<MediaObject>) {
+        val oldVideosList = this.mediaObjects
+        val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(
+            VideoItemDiffCallback(
+                oldVideosList,
+                mediaObjects
+            )
+        )
+        this.mediaObjects = mediaObjects
+        diffResult.dispatchUpdatesTo(this)
+    }
+
+    // DiffUtil --> to increase performance of a RecyclerView
+    class VideoItemDiffCallback(
+        var oldVideosList: ArrayList<MediaObject>,
+        var newVideosList: ArrayList<MediaObject>
+    ) : DiffUtil.Callback() {
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldVideosList[oldItemPosition].media_url == newVideosList[newItemPosition].media_url
+        }
+
+        override fun getOldListSize(): Int {
+          return oldVideosList.size
+        }
+
+        override fun getNewListSize(): Int {
+            return newVideosList.size
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+           return oldVideosList[oldItemPosition] == newVideosList[newItemPosition]
+        }
+    }
+
     class VideoPlayerViewHolder(var parent: View) :
         ViewHolder(parent) {
-        var media_container: FrameLayout = parent.findViewById(R.id.media_container)
         var title: TextView = parent.findViewById(R.id.title)
         var thumbnail: ImageView = parent.findViewById(R.id.thumbnail)
         var volumeControl: ImageView = parent.findViewById(R.id.volume_control)
@@ -57,5 +92,4 @@ class VideoPlayerRecyclerAdapter(
         }
 
     }
-
 }

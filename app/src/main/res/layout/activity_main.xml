@@ -6,12 +6,12 @@
     android:background="#f2f2f2"
     tools:context=".view.MainActivity">
 
-    <com.ttn.recyclerview.view.adapter.VideoPlayerRecyclerView
+    <com.ttn.recyclerview.view.adapters.VideoPlayerRecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    </com.ttn.recyclerview.view.adapter.VideoPlayerRecyclerView>
+    </com.ttn.recyclerview.view.adapters.VideoPlayerRecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
